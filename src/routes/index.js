@@ -7,5 +7,6 @@ const router = express.Router();
 router.use('/products', require('./products'));
 router.use('/categories', require('./categories'));
 router.use('/availability', require('./availability'));
+router.use('/ai', require('./ai'));
 
 module.exports = router;

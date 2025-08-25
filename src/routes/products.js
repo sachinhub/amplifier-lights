@@ -8,6 +8,7 @@ const redisClient = require('../config/redis');
 const config = require('../config');
 const logger = require('../utils/logger');
 const Joi = require('joi');
+const aiCrawler = require('../services/aiCrawlerIntelligence');
 
 const router = express.Router();
 
@@ -80,15 +81,27 @@ router.get('/', async (req, res) => {
     }
 
     // Add JSON-LD for AI crawlers if detected
-    const response = {
+    let response = {
       products,
       total: products.length,
       filters: filters
     };
 
+    // Apply AI crawler optimizations
     if (req.crawlerType && req.crawlerType !== 'default') {
       response.jsonLD = await Promise.all(
         products.slice(0, 10).map(product => Product.generateJsonLD(product, req))
+      );
+      
+      // Apply content optimization
+      response = aiCrawler.optimizeContentForCrawler(response, req.crawlerType);
+      
+      // Log analytics
+      aiCrawler.logCrawlerInteraction(
+        req.crawlerType, 
+        req.originalUrl, 
+        req.get('User-Agent'),
+        JSON.stringify(response).length
       );
     }
 
@@ -122,16 +135,27 @@ router.get('/search', async (req, res) => {
       await setCachedResponse(cacheKey, results, 300);
     }
 
-    const response = {
+    let response = {
       query,
       results,
       total: results.length
     };
 
-    // Add JSON-LD for AI crawlers
+    // Apply AI crawler optimizations
     if (req.crawlerType && req.crawlerType !== 'default') {
       response.jsonLD = await Promise.all(
         results.slice(0, 5).map(product => Product.generateJsonLD(product, req))
+      );
+      
+      // Apply content optimization
+      response = aiCrawler.optimizeContentForCrawler(response, req.crawlerType);
+      
+      // Log analytics
+      aiCrawler.logCrawlerInteraction(
+        req.crawlerType, 
+        req.originalUrl, 
+        req.get('User-Agent'),
+        JSON.stringify(response).length
       );
     }
 
@@ -217,11 +241,22 @@ router.get('/:id', async (req, res) => {
       });
     }
 
-    const response = { product };
+    let response = { product };
 
-    // Add JSON-LD for AI crawlers
+    // Apply AI crawler optimizations
     if (req.crawlerType && req.crawlerType !== 'default') {
       response.jsonLD = await Product.generateJsonLD(product, req);
+      
+      // Apply content optimization
+      response = aiCrawler.optimizeContentForCrawler(response, req.crawlerType);
+      
+      // Log analytics
+      aiCrawler.logCrawlerInteraction(
+        req.crawlerType, 
+        req.originalUrl, 
+        req.get('User-Agent'),
+        JSON.stringify(response).length
+      );
     }
 
     res.json(response);

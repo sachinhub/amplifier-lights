@@ -1,5 +1,6 @@
 const db = require('../config/database');
 const jsonld = require('jsonld');
+const aiCrawler = require('../services/aiCrawlerIntelligence');
 
 class Product {
   constructor() {
@@ -205,58 +206,12 @@ class Product {
     };
   }
 
-  // Generate JSON-LD schema
+  // Generate AI-optimized JSON-LD schema
   async generateJsonLD(product, req) {
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const crawlerType = req.crawlerType || 'default';
     
-    const jsonLdData = {
-      '@context': 'https://schema.org/',
-      '@type': 'Product',
-      '@id': `${baseUrl}/api/v1/products/${product.id}`,
-      name: product.name,
-      description: product.detailedDescription || product.description,
-      image: product.images.map(img => typeof img === 'string' ? img : img.url),
-      brand: product.brand.name ? {
-        '@type': 'Brand',
-        name: product.brand.name,
-        description: product.brand.description,
-        url: product.brand.website
-      } : undefined,
-      category: product.category.name,
-      model: product.model,
-      offers: {
-        '@type': 'Offer',
-        price: product.price,
-        priceCurrency: product.currency,
-        availability: this.mapAvailabilityToSchema(product.availability.status),
-        inventoryLevel: {
-          '@type': 'QuantitativeValue',
-          value: product.availability.quantity
-        },
-        url: `${baseUrl}/api/v1/products/${product.id}`
-      },
-      aggregateRating: product.rating.count > 0 ? {
-        '@type': 'AggregateRating',
-        ratingValue: product.rating.average,
-        reviewCount: product.rating.count
-      } : undefined,
-      additionalProperty: Object.entries(product.specifications || {}).map(([name, value]) => ({
-        '@type': 'PropertyValue',
-        name,
-        value: String(value)
-      })),
-      isRelatedTo: product.alternatives.map(altId => `${baseUrl}/api/v1/products/${altId}`),
-      isAccessoryOrSparePartFor: product.accessories.map(accId => `${baseUrl}/api/v1/products/${accId}`)
-    };
-
-    // Remove undefined values
-    Object.keys(jsonLdData).forEach(key => {
-      if (jsonLdData[key] === undefined) {
-        delete jsonLdData[key];
-      }
-    });
-
-    return jsonLdData;
+    // Use AI crawler intelligence for enhanced JSON-LD generation
+    return aiCrawler.generateEnhancedJsonLD(product, crawlerType, req);
   }
 
   // Map availability status to Schema.org
