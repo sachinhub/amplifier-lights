@@ -12,8 +12,7 @@
     "docker:down": "docker-compose down",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
-    "build": "npm install",
-    "postinstall": "npm run migrate"
+    "build": "npm install"
   },
   "dependencies": {
     "axios": "^1.11.0",
@@ -30,13 +29,13 @@
     "pg": "^8.11.0",
     "rate-limiter-flexible": "^3.0.0",
     "redis": "^4.6.0",
-    "winston": "^3.10.0"
+    "winston": "^3.10.0",
+    "jest": "^29.6.0",
+    "supertest": "^6.3.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",
-    "jest": "^29.6.0",
-    "nodemon": "^3.0.0",
-    "supertest": "^6.3.0"
+    "nodemon": "^3.0.0"
   },
   "engines": {
     "node": ">=18.0.0"

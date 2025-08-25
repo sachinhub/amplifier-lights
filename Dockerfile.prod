@@ -1,6 +1,9 @@
 # Use Node.js 18 LTS
 FROM node:18-alpine
 
+# Install build dependencies
+RUN apk add --no-cache python3 make g++
+
 # Set working directory
 WORKDIR /app
 
@@ -8,13 +11,16 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code
 COPY . .
 
 # Create logs directory
 RUN mkdir -p logs
+
+# Remove postinstall script to avoid migration during build
+RUN npm pkg delete scripts.postinstall
 
 # Set environment variables
 ENV NODE_ENV=production

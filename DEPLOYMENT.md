@@ -16,8 +16,8 @@
 ### 2. Configure the Web Service
 - **Name**: `amplifier-lights-api`
 - **Environment**: `Node`
-- **Build Command**: `npm install && npm run migrate`
-- **Start Command**: `npm start`
+- **Build Command**: `npm install`
+- **Start Command**: `npm run migrate && npm start`
 - **Plan**: `Starter` (or choose based on your needs)
 
 ### 3. Environment Variables
@@ -45,7 +45,11 @@ Render will automatically set these from the `render.yaml`:
 ### 6. Deploy
 1. Click "Create Web Service"
 2. Render will automatically build and deploy your application
-3. Monitor the build logs for any issues
+3. **Build Process**: 
+   - Installs all dependencies (including build tools)
+   - Creates the application container
+   - Runs database migrations on startup
+4. Monitor the build logs for any issues
 
 ## Manual Deployment (Alternative)
 
@@ -65,11 +69,8 @@ export PORT=10000
 export DATABASE_URL=<your-render-postgres-url>
 export REDIS_URL=<your-render-redis-url>
 
-# Run migrations
-npm run migrate
-
-# Start the application
-npm start
+# Run migrations and start the application
+npm run migrate && npm start
 ```
 
 ## Environment Variables Reference

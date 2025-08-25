@@ -3,8 +3,8 @@ services:
     name: amplifier-lights-api
     env: node
     plan: starter
-    buildCommand: npm install && npm run migrate
-    startCommand: npm start
+    buildCommand: npm install
+    startCommand: npm run migrate && npm start
     envVars:
       - key: NODE_ENV
         value: production
