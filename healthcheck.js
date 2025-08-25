@@ -1,8 +1,8 @@
 const http = require('http');
 
 const options = {
-  host: 'localhost',
-  port: process.env.PORT || 3000,
+  hostname: 'localhost',
+  port: process.env.PORT || 10000,
   path: '/health',
   method: 'GET',
   timeout: 2000
@@ -17,6 +17,11 @@ const request = http.request(options, (res) => {
 });
 
 request.on('error', () => {
+  process.exit(1);
+});
+
+request.on('timeout', () => {
+  request.destroy();
   process.exit(1);
 });
 

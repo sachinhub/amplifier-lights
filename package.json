@@ -11,7 +11,9 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "migrate": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "build": "npm install",
+    "postinstall": "npm run migrate"
   },
   "dependencies": {
     "axios": "^1.11.0",
