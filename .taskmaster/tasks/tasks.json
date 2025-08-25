@@ -1,0 +1,211 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Project Setup & Architecture Foundation",
+        "description": "Initialize project structure, dependencies, and core architecture for AmplifiER - Light MVP",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [],
+        "details": "Set up the foundational project structure including Docker containerization, environment configuration, database setup (PostgreSQL + Redis), and core microservices architecture. This includes creating the basic API gateway layer and establishing the development environment.",
+        "testStrategy": "Verify project builds successfully, containers start properly, database connections work, and basic API endpoints respond with health checks.",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Comprehensive Product Catalog API",
+        "description": "Build RESTful API for serving rich product intelligence with AI-optimized schemas",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "details": "Implement the core product catalog API with endpoints for full catalogs, individual products, search functionality, and AI-optimized content. Include JSON-LD schema generation, detailed product specifications, use cases, and comparisons. Support CSV import for product data ingestion.",
+        "testStrategy": "Unit tests for all API endpoints, integration tests for product data ingestion, validate JSON-LD schema compliance, test AI-optimized content generation.",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Real-time Availability Engine",
+        "description": "Implement live inventory tracking system with webhook integration",
+        "status": "done",
+        "priority": "high",
+        "dependencies": [
+          "1"
+        ],
+        "details": "Build the real-time availability engine with live inventory tracking, dynamic pricing updates, stock status monitoring, and webhook integration for external inventory systems. Include geographic availability management and delivery timeframe calculations.",
+        "testStrategy": "Test real-time inventory updates, webhook processing performance, geographic availability logic, and integration with mock inventory systems.",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "AI Crawler Intelligence Module",
+        "description": "Implement user-agent detection and AI platform-specific optimization",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "2"
+        ],
+        "details": "Create the AI crawler intelligence system with user-agent detection for GPTBot, ClaudeBot, and PerplexityBot. Implement platform-specific content formatting, dynamic robots.txt generation, crawl rate limiting, and cache invalidation for real-time data.",
+        "testStrategy": "Test user-agent detection accuracy, validate platform-specific content formatting, verify robots.txt generation, and test crawl rate limiting.",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "API Gateway & Rate Limiting",
+        "description": "Build API gateway with rate limiting, SSL termination, and monitoring",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          "1"
+        ],
+        "details": "Implement the API gateway layer with rate limiting per AI crawler, request logging and monitoring, SSL termination, cache management for real-time data, and load balancing capabilities. Include health monitoring and alerting systems.",
+        "testStrategy": "Test rate limiting enforcement, SSL certificate provisioning, request logging accuracy, cache performance, and health monitoring alerts.",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Data Ingestion Pipeline",
+        "description": "Build system for importing and processing product catalog data",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          "2"
+        ],
+        "details": "Create a robust data ingestion pipeline supporting enhanced CSV format imports, data validation, transformation, and enrichment. Include support for product specifications, use cases, target audience data, and comprehensive product attributes as defined in the PRD.",
+        "testStrategy": "Test CSV import functionality, data validation rules, transformation accuracy, and handling of malformed data inputs.",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "ChatGPT Integration & Optimization",
+        "description": "Optimize content and endpoints specifically for ChatGPT/GPTBot crawler",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "4"
+        ],
+        "details": "Implement ChatGPT-specific optimizations including conversational product descriptions, JSON-LD + rich HTML format, structured data with pricing/availability/ratings, and GPTBot/OAI-SearchBot/ChatGPT-User agent handling.",
+        "testStrategy": "Test GPTBot user-agent detection, validate JSON-LD schema compliance, verify conversational description generation, and test structured data formatting.",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Claude Integration & Optimization",
+        "description": "Optimize content and endpoints specifically for Claude/ClaudeBot crawler",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "4"
+        ],
+        "details": "Implement Claude-specific optimizations including detailed product specifications, clean semantic HTML + JSON-LD format, enhanced product attributes and use cases, and ClaudeBot/anthropic-ai/claude-web agent handling.",
+        "testStrategy": "Test ClaudeBot user-agent detection, validate semantic HTML structure, verify enhanced product attribute formatting, and test detailed specification presentation.",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Perplexity Integration & Optimization",
+        "description": "Optimize content and endpoints specifically for Perplexity/PerplexityBot crawler",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "4"
+        ],
+        "details": "Implement Perplexity-specific optimizations including citation-friendly product pages, research-focused product information, comparative product data with sources, and PerplexityBot user-agent handling.",
+        "testStrategy": "Test PerplexityBot user-agent detection, validate citation formatting, verify comparative data structure, and test research-focused content presentation.",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Webhook Management System",
+        "description": "Build webhook framework for real-time inventory and pricing updates",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          "3"
+        ],
+        "details": "Implement comprehensive webhook management system for inventory updates, pricing changes, and external system integration. Include webhook validation, retry logic, failure handling, and real-time processing with <5 second update guarantees.",
+        "testStrategy": "Test webhook endpoint security, validate retry logic, test failure handling, verify real-time processing speed, and integration with mock external systems.",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Docker Containerization & Microservices",
+        "description": "Package application as Docker containers with microservices architecture",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          "1"
+        ],
+        "details": "Create Docker containers for all microservices including API gateway, product intelligence engine, availability engine, and AI crawler intelligence. Include docker-compose configuration, environment-based configuration, and container orchestration setup.",
+        "testStrategy": "Test container builds, verify microservices communication, test environment configuration, validate container startup times, and test orchestration.",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Caching & Performance Optimization",
+        "description": "Implement Redis caching layer and performance optimizations",
+        "status": "pending",
+        "priority": "medium",
+        "dependencies": [
+          "2",
+          "3"
+        ],
+        "details": "Build comprehensive caching system using Redis for real-time data, API responses, and availability information. Implement cache invalidation strategies, performance monitoring, and optimization for <200ms API response times and <50ms availability checks.",
+        "testStrategy": "Test cache hit rates, validate cache invalidation logic, verify performance benchmarks, test cache consistency, and validate real-time update propagation.",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "API Documentation & Schema Validation",
+        "description": "Create comprehensive API documentation and implement schema validation",
+        "status": "pending",
+        "priority": "low",
+        "dependencies": [
+          "2",
+          "3",
+          "4"
+        ],
+        "details": "Generate complete API documentation including endpoint specifications, request/response schemas, authentication requirements, and AI crawler integration guides. Implement schema validation for all API endpoints and data structures.",
+        "testStrategy": "Validate documentation accuracy against actual API behavior, test schema validation for all endpoints, verify code examples work correctly.",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Integration Testing & AI Crawler Validation",
+        "description": "Comprehensive testing with actual AI crawler simulation and validation",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "7",
+          "8",
+          "9"
+        ],
+        "details": "Perform end-to-end testing simulating actual AI crawler behavior from ChatGPT, Claude, and Perplexity. Validate content optimization, crawl compliance, real-time data accuracy, and overall system performance under crawler load.",
+        "testStrategy": "Simulate GPTBot, ClaudeBot, and PerplexityBot crawling patterns, validate content formatting for each platform, test real-time data accuracy, and perform load testing.",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Deployment & Production Setup",
+        "description": "Production deployment with SSL, monitoring, and scalability features",
+        "status": "pending",
+        "priority": "high",
+        "dependencies": [
+          "11",
+          "12",
+          "14"
+        ],
+        "details": "Deploy production-ready system with automated SSL certificate provisioning, monitoring dashboard, health checks, auto-scaling configuration, and backup systems. Include deployment documentation and operational runbooks.",
+        "testStrategy": "Test production deployment process, validate SSL certificate automation, verify monitoring and alerting, test auto-scaling triggers, and validate backup/restore procedures.",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-08-25T07:58:18.302Z",
+      "updated": "2025-08-25T08:16:58.377Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
