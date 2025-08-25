@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/amplifier_light',
+    connection: process.env.DATABASE_URL || 'postgresql://Sachin@localhost:5432/amplifier_light',
     pool: {
       min: 2,
       max: 10

@@ -5,7 +5,7 @@ module.exports = {
   nodeEnv: process.env.NODE_ENV || 'development',
   
   database: {
-    url: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/amplifier_light'
+    url: process.env.DATABASE_URL || 'postgresql://Sachin@localhost:5432/amplifier_light'
   },
   
   redis: {
