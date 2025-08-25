@@ -16,10 +16,10 @@ describe('Availability API', () => {
   describe('GET /api/v1/availability/:productId', () => {
     test('should return product availability', async () => {
       const response = await request(app)
-        .get('/api/v1/availability/TECH-PHONE-001')
+        .get('/api/v1/availability/TEST-001')
         .expect(200);
 
-      expect(response.body).toHaveProperty('productId', 'TECH-PHONE-001');
+      expect(response.body).toHaveProperty('productId', 'TEST-001');
       expect(response.body).toHaveProperty('locations');
       expect(response.body).toHaveProperty('globalStatus');
       expect(response.body).toHaveProperty('lastUpdated');
@@ -45,17 +45,17 @@ describe('Availability API', () => {
 
     test('should handle location filtering', async () => {
       const response = await request(app)
-        .get('/api/v1/availability/TECH-PHONE-001?location=US')
+        .get('/api/v1/availability/TEST-001?location=US')
         .expect(200);
 
-      expect(response.body).toHaveProperty('productId', 'TECH-PHONE-001');
+      expect(response.body).toHaveProperty('productId', 'TEST-001');
     });
   });
 
   describe('GET /api/v1/availability', () => {
     test('should return bulk availability', async () => {
       const response = await request(app)
-        .get('/api/v1/availability?ids=TECH-PHONE-001,INNO-SMART-002')
+        .get('/api/v1/availability?ids=TEST-001,TEST-002')
         .expect(200);
 
       expect(response.body).toHaveProperty('products');
@@ -88,7 +88,7 @@ describe('Availability API', () => {
   describe('POST /api/v1/availability/update', () => {
     test('should update inventory successfully', async () => {
       const updateData = {
-        productId: 'TECH-PHONE-001',
+        productId: 'TEST-001',
         updates: [{
           locationCode: 'US',
           quantity: 100,
@@ -102,14 +102,14 @@ describe('Availability API', () => {
         .expect(200);
 
       expect(response.body).toHaveProperty('message');
-      expect(response.body).toHaveProperty('productId', 'TECH-PHONE-001');
+      expect(response.body).toHaveProperty('productId', 'TEST-001');
       expect(response.body).toHaveProperty('updates');
       expect(response.body).toHaveProperty('results');
     });
 
     test('should return 400 for invalid update data', async () => {
       const invalidData = {
-        productId: 'TECH-PHONE-001',
+        productId: 'TEST-001',
         updates: [] // Empty updates array
       };
 
